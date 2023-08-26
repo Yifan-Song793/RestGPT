@@ -1,0 +1,732 @@
+[
+    {
+        "query": "give me the number of movies directed by Sofia Coppola",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+    {
+        "query": "Who was the lead actor in the movie The Dark Knight?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "Who directed the top-1 rated movie?",
+        "solution": [
+            "GET /movie/top_rated",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "give me a image for the collection Star Wars",
+        "solution": [
+            "GET /search/collection",
+            "GET /collection/{collection_id}/images"
+        ]
+    },
+    {
+        "query": "What is the logo of the Walt Disney?",
+        "solution": [
+            "GET /search/company",
+            "GET /company/{company_id}/images"
+        ]
+    },
+    {
+        "query": "What dose the lead actor of Titanic look like?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits",
+            "GET /person/{person_id}/images"
+        ]
+    },
+    {
+        "query": "give me some reviews of the first movie that is similar to Titanic",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/similar",
+            "GET /movie/{movie_id}/reviews"
+        ]
+    },
+    {
+        "query": "I just finished watching Titanic and I want some other movie recommendations",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/recommendations"
+        ]
+    },
+    {
+        "query": "What is the latest movie directed by Christopher Nolan?",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+    {
+        "query": "tell me the highest rated movie directed by Martin Scorsese",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+    {
+        "query": "Who is the director of Leonardo DiCaprio's latest movie?",
+        "solution": [
+            "GET /search/person",
+            "GET /movie/latest",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "tell me a TV show recently directed by Catherine Hardwicke",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/tv_credits"
+        ]
+    },
+    {
+        "query": "Please recommend me some TV shows similar to Breaking Bad",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/recommendations"
+        ]
+    },
+    {
+        "query": "Who is the director of today's most trending movie?",
+        "solution": [
+            "GET /trending/{media_type}/{time_window}",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "Who is the director of the movie \"Twilight\"?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "give me a photo belong to the second episode of the first season of the Witcher",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/episode/{episode_number}/images"
+        ]
+    },
+    {
+        "query": "Who directed the movie \"The Dark Knight\"?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "What is the release date of the movie \"The Matrix\"?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/release_dates"
+        ]
+    },
+    {
+        "query": "Who starred in the movie \"Titanic\"?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "Give me some cover images of movies directed by Christopher Nolan.",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits",
+            "GET /movie/{movie_id}/images"
+        ]
+    },
+    {
+        "query": " What are some common keywords associated with movie \"Titanic\"?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/keywords"
+        ]
+    },
+    {
+        "query": "Give me some movie recommendations related to \"Titanic\"",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/recommendations"
+        ]
+    },
+    {
+        "query": "When is Clint Eastwood's latest movie scheduled to be released?",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits",
+            "GET /movie/{movie_id}/release_dates"
+        ]
+    },
+    {
+        "query": "Give me some movie reviews about The Dark Knight",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/reviews"
+        ]
+    },
+    {
+        "query": "What are some movies that are similar to one of the movies directed by Francis Ford Coppola?",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits",
+            "GET /movie/{movie_id}/similar"
+        ]
+    },
+    {
+        "query": "Who is the lead actor in the latest released movie?",
+        "solution": [
+            "GET /movie/latest",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "give me one image of the movie that is currently showing in theaters",
+        "solution": [
+            "GET /movie/now_playing",
+            "GET /movie/{movie_id}/images"
+        ]
+    },
+    {
+        "query": "What is the most popular movie right now and what is its keywords?",
+        "solution": [
+            "GET /movie/popular",
+            "GET /movie/{movie_id}/keywords"
+        ]
+    },
+    {
+        "query": "What are the keywords of the most popular movie right now",
+        "solution": [
+            "GET /movie/popular",
+            "GET /movie/{movie_id}/keywords"
+        ]
+    },
+    {
+        "query": "Who has starred in a movie \"Titanic\"",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "What do the logo looks like for Paramount Pictures?",
+        "solution": [
+            "GET /company/{company_id}",
+            "GET /company/{company_id}/images"
+        ]
+    },
+    {
+        "query": "tell me where the company \"universal pictures\" was founded?",
+        "solution": [
+            "GET /search/company",
+            "GET /company/{company_id}"
+        ]
+    },
+    {
+        "query": "When is the movie \"Titanic\" released?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/release_dates"
+        ]
+    },
+    {
+        "query": "Who has starred in the first movie of Star Wars collection?",
+        "solution": [
+            "GET /search/collection",
+            "GET /collection/{collection_id}",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "give me a movie cover of a movie from the collection Harry Potter",
+        "solution": [
+            "GET /search/collection",
+            "GET /collection/{collection_id}",
+            "GET /movie/{movie_id}/images"
+        ]
+    },
+    {
+        "query": "What are some keywords for a movie of the collection The Hunger Games?",
+        "solution": [
+            "GET /search/collection",
+            "GET /collection/{collection_id}",
+            "GET /movie/{movie_id}/keywords"
+        ]
+    },
+    {
+        "query": "When are the release dates for the movies of the collection The Hobbit?",
+        "solution": [
+            "GET /search/collection",
+            "GET /collection/{collection_id}"
+        ]
+    },
+    {
+        "query": "List movies from The Fast and the Furious collection?",
+        "solution": [
+            "GET /search/collection",
+            "GET /collection/{collection_id}"
+        ]
+    },
+    {
+        "query": "Give me a review of a movie from the collection The Fast and the Furious.",
+        "solution": [
+            "GET /search/collection",
+            "GET /collection/{collection_id}",
+            "GET /movie/{movie_id}/reviews"
+        ]
+    },
+    {
+        "query": "When was the first movie of the collection Lord of the Rings released?",
+        "solution": [
+            "GET /search/collection",
+            "GET /collection/{collection_id}"
+        ]
+    },
+    {
+        "query": "tell me the directors of the first season of House of Cards",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/credits"
+        ]
+    },
+    {
+        "query": "I want some tv shows that similar to House of Cards",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/similar"
+        ]
+    },
+    {
+        "query": "When did the most popular TV show currently on the air start?",
+        "solution": [
+            "GET /tv/on_the_air",
+            "GET /tv/{tv_id}"
+        ]
+    },
+    {
+        "query": "tell me a few more works directed by the director of Django Unchained",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+    {
+        "query": "tell me the cast of a TV show on the air",
+        "solution": [
+            "GET /tv/on_the_air",
+            "GET /tv/{tv_id}/credits"
+        ]
+    },
+    {
+        "query": "I need a review for Breaking Bad",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/reviews"
+        ]
+    },
+    {
+        "query": "I'm watching the tv series The Last Of Us and I need some more recommendations",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/recommendations"
+        ]
+    },
+    {
+        "query": "I'm watching a TV show called The Last Of Us and I need some more recommendations",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/recommendations"
+        ]
+    },
+    {
+        "query": "tell me the guest star from season 3, episode 24 of Friends",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/episode/{episode_number}/credits"
+        ]
+    },
+    {
+        "query": "Who is the lead actor in the most popular TV show?",
+        "solution": [
+            "GET /tv/popular",
+            "GET /tv/{tv_id}/credits"
+        ]
+    },
+    {
+        "query": "give me a keyword of the top-1 rated TV show",
+        "solution": [
+            "GET /tv/top_rated",
+            "GET /tv/{tv_id}/keywords"
+        ]
+    },
+    {
+        "query": "give me a poster of 2 Broke Girls",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/images"
+        ]
+    },
+    {
+        "query": "How many episodes does 2 Broke Girls have in total?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}"
+        ]
+    },
+    {
+        "query": "When was the company that produced The Big Bang Theory founded?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}",
+            "GET /company/{company_id}"
+        ]
+    },
+    {
+        "query": "When was the TV show The Big Bang Theory created?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}"
+        ]
+    },
+    {
+        "query": "give me a keyword of the most popular TV show",
+        "solution": [
+            "GET /tv/popular",
+            "GET /tv/{tv_id}/keywords"
+        ]
+    },
+    {
+        "query": "What did the third episode of the second season of Westworld talk about?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/episode/{episode_number}"
+        ]
+    },
+    {
+        "query": "Tell me the air date of the second season of Game of Thrones",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}"
+        ]
+    },
+    {
+        "query": " give me a poster of the third episode of Band of Brothers",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/episode/{episode_number}/images"
+        ]
+    },
+    {
+        "query": "What is the logo of the network that produced Game of Thrones?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}",
+            "GET /network/{network_id}/images"
+        ]
+    },
+    {
+        "query": "give me the homepage of the network that produced Game of Thrones",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}",
+            "GET /network/{network_id}"
+        ]
+    },
+    {
+        "query": "give me a keyword of the most popular TV show currently",
+        "solution": [
+            "GET /tv/popular",
+            "GET /tv/{tv_id}/keywords"
+        ]
+    },
+    {
+        "query": "Where is the headquarter of the company that produced currently the most popular TV show?",
+        "solution": [
+            "GET /tv/popular",
+            "GET /tv/{tv_id}",
+            "GET /company/{company_id}"
+        ]
+    },
+    {
+        "query": "What is the genre of The Mandalorian?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}"
+        ]
+    },
+    {
+        "query": "When is the birthday of the lead actor of today's most trending TV show?",
+        "solution": [
+            "GET /trending/{media_type}/{time_window}",
+            "GET /tv/{tv_id}/credits",
+            "GET /person/{person_id}"
+        ]
+    },
+    {
+        "query": "What is the homepage of the network that produced today's most trending TV show?",
+        "solution": [
+            "GET /trending/{media_type}/{time_window}",
+            "GET /tv/{tv_id}",
+            "GET /network/{network_id}"
+        ]
+    },
+    {
+        "query": "give me a review of today's most trending TV show",
+        "solution": [
+            "GET /trending/{media_type}/{time_window}",
+            "GET /tv/{tv_id}/reviews"
+        ]
+    },
+    {
+        "query": "I prefer a TV show that similar to today's most trending TV show",
+        "solution": [
+            "GET /trending/{media_type}/{time_window}",
+            "GET /tv/{tv_id}/similar"
+        ]
+    },
+    {
+        "query": "I need a poster of today's most trending TV show",
+        "solution": [
+            "GET /trending/{media_type}/{time_window}",
+            "GET /tv/{tv_id}/images"
+        ]
+    },
+    {
+        "query": "Who has worked with Jeremy Clarkson in his most popular TV show?",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/tv_credits",
+            "GET /tv/{tv_id}/credits"
+        ]
+    },
+    {
+        "query": "What does the lead actor of the first episode of second season of Black Mirror look like?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/credits",
+            "GET /person/{person_id}/images"
+        ]
+    },
+    {
+        "query": "When is the lead actor of The Mandalorian born?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/credits",
+            "GET /person/{person_id}"
+        ]
+    },
+    {
+        "query": "Who is the lead actor of today's most popular TV show?",
+        "solution": [
+            "GET /tv/popular",
+            "GET /tv/{tv_id}/credits",
+            "GET /person/{person_id}"
+        ]
+    },
+    {
+        "query": "give me a photo of the lead actor of the most popular TV show of this week",
+        "solution": [
+            "GET /tv/latest",
+            "GET /tv/{tv_id}/credits",
+            "GET /person/{person_id}/images"
+        ]
+    },
+    {
+        "query": "give me some reviews of Cate Blanchett's latest TV show",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/tv_credits",
+            "GET /tv/{tv_id}/reviews"
+        ]
+    },
+    {
+        "query": "What is David Schwimmer's most popular TV show?",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/tv_credits"
+        ]
+    },
+    {
+        "query": "Who directed the third episode of the second season of Black Mirror?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/credits"
+        ]
+    },
+    {
+        "query": "give me some movies that Christopher Nolan known for",
+        "solution": [
+            "GET /search/person"
+        ]
+    },
+    {
+        "query": "Avatar versus Avatar: The Way of Water, which has a higher rating",
+        "solution": [
+            "GET /search/movie",
+            "GET /search/movie"
+        ]
+    },
+    {
+        "query": "Show me some English movies rating no less than 7.0 and no earlier than 2021",
+        "solution": [
+            "GET /discover/movie"
+        ]
+    },
+    {
+        "query": "What is the genre of the movie Lord of the Ring?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}"
+        ]
+    },
+    {
+        "query": "What is the birthday of the most popular person right now?",
+        "solution": [
+            "GET /person/popular",
+            "GET /person/{person_id}"
+        ]
+    },
+    {
+        "query": "give me a poster of the second season of Big Bang Theory",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/images"
+        ]
+    },
+    {
+        "query": "What is the title of the third episode of the second season of Mandalorian?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/episode/{episode_number}"
+        ]
+    },
+    {
+        "query": "When is the bitrhday of the lead actor of the movie The Shawshank Redemptionn?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits",
+            "GET /person/{person_id}"
+        ]
+    },
+    {
+        "query": "When is the birthday of the director of the movie The Shawshank Redemption?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits",
+            "GET /person/{person_id}"
+        ]
+    },
+    {
+        "query": "When is the date of establishment of the company that created the movie The Shawshank Redemption?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}",
+            "GET /company/{company_id}"
+        ]
+    },
+    {
+        "query": "Where is the headquarter of the company that created the collection Star Wars?",
+        "solution": [
+            "GET /search/collection",
+            "GET /collection/{collection_id}",
+            "GET /company/{company_id}"
+        ]
+    },
+    {
+        "query": "Who has an earlier release date, The Double Life of Veronique or Mulholland Drive?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}"
+        ]
+    },
+    {
+        "query": "Is the director of Twin Peaks Season 1 and Mulholland Drive the same person?",
+        "solution": [
+            "GET /search/tv",
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits",
+            "GET /tv/{tv_id}/season/{season_number}/credits"
+        ]
+    },
+    {
+        "query": "Where was the director of Mulholland Drive born?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits",
+            "GET /person/{person_id}"
+        ]
+    },
+    {
+        "query": "Is Mulholland Drive in the Top-10 rated list of the TMDB?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/top_rated"
+        ]
+    },
+    {
+        "query": "Who directed more movies, Akira Kurosawa or Spielberg?",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+    {
+        "query": "What TV series has the director of Mulholland Drive directed?",
+        "solution": [
+            "GET /search/movie",
+            "GET /person/{person_id}/tv_credits"
+        ]
+    },
+    {
+        "query": "Tell me about actor Scarlett Johansson's birthday",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}"
+        ]
+    },
+    {
+        "query": "How many seasons of Sword Art Online are there?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}"
+        ]
+    },
+    {
+        "query": "Are Yui Aragaki and Gen Hoshino co-starring in We Married as Job?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "Who is older, by how many years, the director of film Barbie or the lead actor of television DEATH NOTE?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits",
+            "GET /search/tv",
+            "GET /tv/{tv_id}/credits"
+        ]
+    },
+    {
+        "query": "Tell me about Katherine LaNasa's latest movie appearance.",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+    {
+        "query": "Give me one cover image of the movie Oppenheimer.",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/images"
+        ]
+    }
+]
