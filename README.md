@@ -8,7 +8,7 @@ This work aims to construct a **large language model based autonomous agent, Res
 
 ## What's New
 
-* The demo is under-construction.
+* **[Next]** The demo is under-construction.
 * **[2023/8/29]** Code for RestGPT is released.
 * **[2023/8/28]** The second version of our [paper](https://arxiv.org/abs/2306.06624) is released.
 * **[2023/6/13]** Our [paper](https://arxiv.org/abs/2306.06624) is released.
@@ -33,7 +33,7 @@ Here is an example of using TMDB movie database to search for the number of movi
 
 ## Data
 
-We also introduce RestBench to evaluate the performance of RestGPT. RestBench is a high-quality test set consists of TMDB movie database and Spotify music player scenarios. We collect realistic user instructions with human-annotated gold solution paths. Here is examples of RestBench:
+We also introduce RestBench to evaluate the performance of RestGPT. RestBench is a high-quality test set consisting of TMDB movie database and Spotify music player scenarios. We collect realistic user instructions with human-annotated gold solution paths. Here is examples of RestBench:
 
 TMDB example:
 
