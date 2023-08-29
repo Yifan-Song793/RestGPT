@@ -109,7 +109,9 @@ If you find this repo useful, please cite us.
       title={RestGPT: Connecting Large Language Models with Real-World RESTful APIs}, 
       author={Yifan Song and Weimin Xiong and Dawei Zhu and Wenhao Wu and Han Qian and Mingbo Song and Hailiang Huang and Cheng Li and Ke Wang and Rong Yao and Ye Tian and Sujian Li},
       year={2023},
-      journal={arXiv preprint arXiv:2306.06624}
+      eprint={2306.06624},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
 }
 ```
 
