@@ -1,8 +1,45 @@
 # RestGPT
 
-RestGPT: An LLM-Based Autonomous Agent Controlling Real-World Applications via RESTful APIs
+This is the code for the paper [RestGPT: Connecting Large Language Models with Real-World RESTful APIs](https://arxiv.org/abs/2306.06624).
 
-The data of our proposed RestBench is in `datasets` folder.
+This work aims to construct a **large language model based autonomous agent, RestGPT, to control real-world applications**, such as movie database and music player. To achieve this, we connect LLMs with **RESTful APIs** and tackle the practical challenge of planning, API calling, and response parsing. To fully evaluate the performance of RestGPT, we propose **RestBench**, a high-quality test set which consists of two real-world scenarios and human-annotated instructions with gold solution paths.
+
+![intro](imgs/intro.png)
+
+## What's New
+
+The demo is under-construction.
+
+* **[2023/8/29]** Code for RestGPT is released.
+* **[2023/8/28]** The second version of our [paper](https://arxiv.org/abs/2306.06624) is released.
+* **[2023/6/13]** Our [paper](https://arxiv.org/abs/2306.06624) is released.
+
+## RestGPT
+
+RestGPT adopts an iterative coarse-to-fine online planning framework and uses an executor to call RESTful APIs. Here is an overview of RestGPT.
+
+![model](imgs\model.png)
+
+Modules:
+
+* Planner: generating natural language sub-task for current step.
+* API selector: mapping the coarse high-level sub-task to finer API calling plan.
+* Executor: executing the API calling plan.
+    * Caller: organizing API parameters based on the API plan and API documentation.
+    * Parser: generating Python code to parse the API response based on the response schema.
+
+## Data
+
+We also introduce RestBench to evaluate the performance of RestGPT. RestBench is a high-quality test set consists of TMDB movie database and Spotify music player scenarios. We collect realistic user instructions with human-annotated gold solution paths. Here is examples of RestBench:
+
+![restbench_example](imgs/restbench_example.png)
+
+Below is the statistics of the data. We report the number of instructions with different lengths of solution path:
+
+| Scenario | #APIs | Len-1 | Len-2 | Len-3 | Len-4 | Avg. Len. | Total |
+| -------- | ----- | ----- | ----- | ----- | ----- | --------- | ----- |
+| TMDB     | 54    | 5     | 66    | 27    | 2     | 2.3       | 100   |
+| Spotify  | 40    | 8     | 18    | 22    | 9     | 2.6       | 57    |
 
 ## Setup
 
