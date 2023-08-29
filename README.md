@@ -8,8 +8,7 @@ This work aims to construct a **large language model based autonomous agent, Res
 
 ## What's New
 
-The demo is under-construction.
-
+* The demo is under-construction.
 * **[2023/8/29]** Code for RestGPT is released.
 * **[2023/8/28]** The second version of our [paper](https://arxiv.org/abs/2306.06624) is released.
 * **[2023/6/13]** Our [paper](https://arxiv.org/abs/2306.06624) is released.
@@ -27,6 +26,10 @@ Modules:
 * Executor: executing the API calling plan.
     * Caller: organizing API parameters based on the API plan and API documentation.
     * Parser: generating Python code to parse the API response based on the response schema.
+
+Here is an example of using TMDB movie database to search for the number of movies directed by Sophia Coppora.
+
+![example](imgs\example.gif)
 
 ## Data
 
@@ -77,12 +80,36 @@ python init_spotify.py
 
 ## Run
 
+The code can be run using the following command:
+
+```bash
+python run.py
+```
+
+Then Input the scenario (TMDB/Spotify) and instruction.
+
+We also provide two scripts to run RestGPT on RestBench:
+
 ```bash
 # TMDB
 python run_tmdb.py
 
-# Spotify，please open the Spotify on your device
+# Spotify, please open Spotify on your device
 python run_spotify.py
 ```
 
-The log file will be in the `logs` folder
+`run_tmdb.py` will sequentially execute all instructions of RestBench-TMDB. Regarding RestBench-Spotify, you should manually modify the `query_idx` before executing the instructions.
+
+## Citation
+
+If you find this repo useful, please cite us.
+
+```bibtex
+@misc{song2023restgpt,
+      title={RestGPT: Connecting Large Language Models with Real-World RESTful APIs}, 
+      author={Yifan Song and Weimin Xiong and Dawei Zhu and Wenhao Wu and Han Qian and Mingbo Song and Hailiang Huang and Cheng Li and Ke Wang and Rong Yao and Ye Tian and Sujian Li},
+      year={2023},
+      journal={arXiv preprint arXiv:2306.06624}
+}
+```
+
