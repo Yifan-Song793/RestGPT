@@ -29,7 +29,7 @@ Modules:
 
 Here is an example of using TMDB movie database to search for the number of movies directed by Sophia Coppora.
 
-![example](imgs\example.gif)
+![example](https://github.com/Yifan-Song793/RestGPT/blob/main/imgs/example.gif)
 
 ## Data
 
