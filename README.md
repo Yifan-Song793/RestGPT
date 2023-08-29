@@ -27,7 +27,7 @@ Modules:
     * Caller: organizing API parameters based on the API plan and API documentation.
     * Parser: generating Python code to parse the API response based on the response schema.
 
-Here is an example of using TMDB movie database to search for the number of movies directed by Sophia Coppora.
+Here is an example of using TMDB movie database to search for the number of movies directed by Sofia Coppora.
 
 ![example](https://github.com/Yifan-Song793/RestGPT/blob/main/imgs/example.gif)
 
