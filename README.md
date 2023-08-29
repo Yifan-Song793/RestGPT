@@ -18,7 +18,7 @@ The demo is under-construction.
 
 RestGPT adopts an iterative coarse-to-fine online planning framework and uses an executor to call RESTful APIs. Here is an overview of RestGPT.
 
-![model](imgs\model.png)
+![model](imgs/model.png)
 
 Modules:
 
