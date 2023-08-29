@@ -32,7 +32,21 @@ Modules:
 
 We also introduce RestBench to evaluate the performance of RestGPT. RestBench is a high-quality test set consists of TMDB movie database and Spotify music player scenarios. We collect realistic user instructions with human-annotated gold solution paths. Here is examples of RestBench:
 
-![restbench_example](imgs/restbench_example.png)
+TMDB example:
+
+* Instruction: Who is the director of today's most trending movie?
+* Gold solution path
+    * GET /trending/\{media_type\}/\{time\_window\}
+    * GET /movie/\{movie_id\}/credits
+
+Spotify example:
+
+* Instruction: Make me a playlist containing three songs of Mariah Carey and name it 'Love Mariah'.
+* Gold solution path
+    * GET /search
+    * GET /me
+    * POST /usres/\{user_id\}/playlists
+    * POST /playlists/\{playlist_id\}/tracks
 
 Below is the statistics of the data. We report the number of instructions with different lengths of solution path:
 
