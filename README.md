@@ -48,7 +48,7 @@ Spotify example:
 * Gold solution path
     * GET /search
     * GET /me
-    * POST /users/\{user_id\}/playlists
+    * POST /usres/\{user_id\}/playlists
     * POST /playlists/\{playlist_id\}/tracks
 
 Below is the statistics of the data. We report the number of instructions with different lengths of solution path:
