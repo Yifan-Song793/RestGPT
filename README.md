@@ -2,7 +2,7 @@
 
 This is the code for the paper [RestGPT: Connecting Large Language Models with Real-World RESTful APIs](https://arxiv.org/abs/2306.06624).
 
-This work aims to construct a **large language model based autonomous agent, RestGPT, to control real-world applications**, such as movie database and music player. To achieve this, we connect LLMs with **RESTful APIs** and tackle the practical challenges of planning, API calling, and response parsing. To fully evaluate the performance of RestGPT, we propose **RestBench**, a high-quality test set which consists of two real-world scenarios and human-annotated instructions with gold solution paths.
+This work aims to construct a **large language model based autonomous agent, RestGPT, to control real-world applications**, such as movie database and music player. To achieve this, we connect LLMs with **RESTful APIs** and tackle the practical challenges of planning, API calling, and response parsing. To fully evaluate the performance of RestGPT, we propose **RestBench**, a high-quality benchmark which consists of two real-world scenarios and human-annotated instructions with gold solution paths.
 
 ![intro](imgs/intro.png)
 
