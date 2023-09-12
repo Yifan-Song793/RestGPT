@@ -300,14 +300,14 @@
         "query": "Follow all the singers involved in the song When You Believe",
         "solution": [
             "GET /search",
-            "GET /tracks/{id}",
+            "GET /track/{id}",
             "PUT /me/following"
         ]
     },
     {
-        "query": "jump to 1:00 of current song",
+        "query": "Skip to the next track",
         "solution": [
-            "PUT /me/player/play"
+            "POST /me/player/next"
         ]
     },
     {
@@ -416,6 +416,18 @@
             "GET /me/tracks",
             "POST /me/player/queue",
             "PUT /me/player/repeat"
+        ]
+    },
+    {
+        "query": "What is my user name?",
+        "solution": [
+            "GET /me"
+        ]
+    },
+    {
+        "query": "Pause the player",
+        "solution": [
+            "PUT /me/player/pause"
         ]
     }
 ]

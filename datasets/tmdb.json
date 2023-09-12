@@ -75,7 +75,7 @@
         "query": "Who is the director of Leonardo DiCaprio's latest movie?",
         "solution": [
             "GET /search/person",
-            "GET /movie/latest",
+            "GET /person/{person_id}/movie_credits",
             "GET /movie/{movie_id}/credits"
         ]
     },
@@ -115,10 +115,9 @@
         ]
     },
     {
-        "query": "Who directed the movie \"The Dark Knight\"?",
+        "query": "What is top-1 rated movie?",
         "solution": [
-            "GET /search/movie",
-            "GET /movie/{movie_id}/credits"
+            "GET /movie/top_rated"
         ]
     },
     {
@@ -129,10 +128,9 @@
         ]
     },
     {
-        "query": "Who starred in the movie \"Titanic\"?",
+        "query": "Who is the most popular person?",
         "solution": [
-            "GET /search/movie",
-            "GET /movie/{movie_id}/credits"
+            "GET /person/popular"
         ]
     },
     {
@@ -144,17 +142,16 @@
         ]
     },
     {
-        "query": " What are some common keywords associated with movie \"Titanic\"?",
+        "query": "What are some common keywords associated with movie \"Titanic\"?",
         "solution": [
             "GET /search/movie",
             "GET /movie/{movie_id}/keywords"
         ]
     },
     {
-        "query": "Give me some movie recommendations related to \"Titanic\"",
+        "query": "Give me a show that is currently on the air",
         "solution": [
-            "GET /search/movie",
-            "GET /movie/{movie_id}/recommendations"
+            "GET /tv/on_the_air"
         ]
     },
     {
@@ -190,7 +187,7 @@
     {
         "query": "give me one image of the movie that is currently showing in theaters",
         "solution": [
-            "GET /movie/now_playing",
+            " GET /movie/now_playing",
             "GET /movie/{movie_id}/images"
         ]
     },
@@ -204,14 +201,14 @@
     {
         "query": "What are the keywords of the most popular movie right now",
         "solution": [
-            "GET /movie/popular",
+            " GET /movie/popular",
             "GET /movie/{movie_id}/keywords"
         ]
     },
     {
         "query": "Who has starred in a movie \"Titanic\"",
         "solution": [
-            "GET /search/movie",
+            "GET /search/movie ",
             "GET /movie/{movie_id}/credits"
         ]
     },
@@ -232,7 +229,7 @@
     {
         "query": "When is the movie \"Titanic\" released?",
         "solution": [
-            "GET /search/movie",
+            "GET /search/movie ",
             "GET /movie/{movie_id}/release_dates"
         ]
     },
@@ -268,7 +265,7 @@
         ]
     },
     {
-        "query": "List movies from The Fast and the Furious collection?",
+        "query": "List movies from The Fast and the Furious collection",
         "solution": [
             "GET /search/collection",
             "GET /collection/{collection_id}"
@@ -527,14 +524,13 @@
         "query": "Who is the lead actor of today's most popular TV show?",
         "solution": [
             "GET /tv/popular",
-            "GET /tv/{tv_id}/credits",
-            "GET /person/{person_id}"
+            "GET /tv/{tv_id}/credits"
         ]
     },
     {
         "query": "give me a photo of the lead actor of the most popular TV show of this week",
         "solution": [
-            "GET /tv/latest",
+            "GET /tv/popular",
             "GET /tv/{tv_id}/credits",
             "GET /person/{person_id}/images"
         ]
@@ -602,7 +598,7 @@
         ]
     },
     {
-        "query": "What is the title of the third episode of the second season of Mandalorian?",
+        "query": "What is the name of the third episod of the second season of Mandalorian?",
         "solution": [
             "GET /search/tv",
             "GET /tv/{tv_id}/season/{season_number}/episode/{episode_number}"
@@ -625,7 +621,7 @@
         ]
     },
     {
-        "query": "When is the date of establishment of the company that created the movie The Shawshank Redemption?",
+        "query": "Where is the headquarter of the company that created the movie The Shawshank Redemption?",
         "solution": [
             "GET /search/movie",
             "GET /movie/{movie_id}",
@@ -719,7 +715,7 @@
         "query": "Tell me about Katherine LaNasa's latest movie appearance.",
         "solution": [
             "GET /search/person",
-            "GET /person/{person_id}/movie_credits"
+            "GET /person/{movie_id}/movie_credits"
         ]
     },
     {
