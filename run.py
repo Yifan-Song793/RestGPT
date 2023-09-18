@@ -14,14 +14,26 @@ from model import RestGPT
 
 logger = logging.getLogger()
 
+import streamlit as st
 
 def main():
     config = yaml.load(open('config.yaml', 'r'), Loader=yaml.FullLoader)
-    os.environ["OPENAI_API_KEY"] = config['openai_api_key']
-    os.environ["TMDB_ACCESS_TOKEN"] = config['tmdb_access_token']
-    os.environ['SPOTIPY_CLIENT_ID'] = config['spotipy_client_id']
-    os.environ['SPOTIPY_CLIENT_SECRET'] = config['spotipy_client_secret']
-    os.environ['SPOTIPY_REDIRECT_URI'] = config['spotipy_redirect_uri']
+
+    # Define a function to get values from st.secrets or fallback to config.yaml
+    def get_secret_or_config(key):
+        if key in st.secrets:
+            return st.secrets[key]
+        elif key in config:
+            return config[key]
+        else:
+            raise ValueError(f"Key '{key}' not found in secrets or config")
+
+    # Set environment variables
+    os.environ["OPENAI_API_KEY"] = get_secret_or_config('openai_api_key')
+    os.environ["TMDB_ACCESS_TOKEN"] = get_secret_or_config('TMDB_ACCESS_TOKEN')
+    os.environ['SPOTIPY_CLIENT_ID'] = get_secret_or_config('spotipy_client_id')
+    os.environ['SPOTIPY_CLIENT_SECRET'] = get_secret_or_config('spotipy_client_secret')
+    os.environ['SPOTIPY_REDIRECT_URI'] = get_secret_or_config('spotipy_redirect_uri')
         
     logging.basicConfig(
         format="%(message)s",
