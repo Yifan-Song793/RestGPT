@@ -16,6 +16,22 @@ logger = logging.getLogger()
 import streamlit as st
 st.title("RestGPT")
 st.subheader("An LLM-based autonomous agent controlling real-world applications via RESTful APIs")
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            footer:after {
+                content:"Made with 💓 by Chandra Sekhar Mullu"; 
+                visibility: visible;
+                display: block;
+                position: relative;
+                #background-color: red;
+                padding: 5px;
+                top: 2px;
+            }
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 def main():
     config = yaml.load(open('config.yaml', 'r'), Loader=yaml.FullLoader)
