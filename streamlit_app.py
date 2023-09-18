@@ -83,12 +83,25 @@ def main():
         query_example = "Add Summertime Sadness by Lana Del Rey in my first playlist"
     st.write(f"Example instruction: {query_example}")
     query = st.text_input('Query', query_example)
-    if st.button("Run", type="primary"):
-        logger.info(f"Query: {query}")
-        start_time = time.time()
-        output = rest_gpt.run(query)
-        st.write(output)
-        logger.info(f"Execution Time: {time.time() - start_time}")
+    st.info("Since ChatGPT is trained with data till sep 2021 we ask any query beyond the that time period")
 
+    # Create a placeholder for displaying either the button or the status
+    status_placeholder = st.empty()
+
+    # Initialize a variable to track the button state
+    button_clicked = False
+
+    # Check if the button was clicked
+    if status_placeholder.button("Run", type="primary"):
+        button_clicked = True
+
+    # Simulate some processing
+    if button_clicked:
+        with status_placeholder.status("Running"):
+            logger.info(f"Query: {query}")
+            start_time = time.time()
+            output = rest_gpt.run(query)
+            st.success(output)
+            logger.info(f"Execution Time: {time.time() - start_time}")
 if __name__ == '__main__':
     main()
