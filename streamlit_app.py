@@ -78,7 +78,7 @@ def main():
     rest_gpt = RestGPT(llm, api_spec=api_spec, scenario=scenario, requests_wrapper=requests_wrapper, simple_parser=False)
 
     if scenario == 'tmdb':
-        query_example = 'What is the movie directed by SS Rajamouli in 2022' # Since ChatGPT is trained with data till sep 2021 we ask query for 2022
+        query_example = 'What is the most popular movie directed by SS Rajamouli in 2022' # Since ChatGPT is trained with data till sep 2021 we ask query for 2022
     elif scenario == 'spotify':
         query_example = "Add Summertime Sadness by Lana Del Rey in my first playlist"
     st.write(f"Example instruction: {query_example}")
