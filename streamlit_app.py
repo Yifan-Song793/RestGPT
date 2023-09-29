@@ -1,7 +1,6 @@
 import os
 import json
 import logging
-import datetime
 import time
 import yaml
 
@@ -15,6 +14,24 @@ from model import RestGPT
 logger = logging.getLogger()
 
 import streamlit as st
+st.title("RestGPT")
+st.subheader("An LLM-based autonomous agent controlling real-world applications via RESTful APIs")
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            footer:after {
+                content:"Made with 💓 by Chandra Sekhar Mullu"; 
+                visibility: visible;
+                display: block;
+                position: relative;
+                #background-color: red;
+                padding: 5px;
+                top: 2px;
+            }
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 def main():
     config = yaml.load(open('config.yaml', 'r'), Loader=yaml.FullLoader)
@@ -23,14 +40,14 @@ def main():
     def get_secret_or_config(key):
         if key in st.secrets:
             return st.secrets[key]
-        elif key in config:
+        elif key in config and config[key] != '':
             return config[key]
         else:
             raise ValueError(f"Key '{key}' not found in secrets or config")
 
     # Set environment variables
     os.environ["OPENAI_API_KEY"] = get_secret_or_config('openai_api_key')
-    os.environ["TMDB_ACCESS_TOKEN"] = get_secret_or_config('TMDB_ACCESS_TOKEN')
+    os.environ["TMDB_ACCESS_TOKEN"] = get_secret_or_config('tmdb_access_token')
     os.environ['SPOTIPY_CLIENT_ID'] = get_secret_or_config('spotipy_client_id')
     os.environ['SPOTIPY_CLIENT_SECRET'] = get_secret_or_config('spotipy_client_secret')
     os.environ['SPOTIPY_REDIRECT_URI'] = get_secret_or_config('spotipy_redirect_uri')
@@ -41,7 +58,10 @@ def main():
     )
     logger.setLevel(logging.INFO)
 
-    scenario = input("Please select a scenario (TMDB/Spotify): ")
+    scenario = st.selectbox(
+        'Which API you want to play with',
+        ('TMDB', 'Spotify'))
+
     scenario = scenario.lower()
 
     if scenario == 'tmdb':
@@ -70,23 +90,34 @@ def main():
 
     requests_wrapper = Requests(headers=headers)
 
-    llm = OpenAI(model_name="text-davinci-003", temperature=0.0, max_tokens=700)
+    llm = OpenAI(model_name="text-davinci-003", temperature=0.0, max_tokens=-1)
     rest_gpt = RestGPT(llm, api_spec=api_spec, scenario=scenario, requests_wrapper=requests_wrapper, simple_parser=False)
 
     if scenario == 'tmdb':
-        query_example = "Give me the number of movies directed by Sofia Coppola"
+        query_example = 'What is the most popular movie directed by SS Rajamouli in 2022' # Since ChatGPT is trained with data till sep 2021 we ask query for 2022
     elif scenario == 'spotify':
         query_example = "Add Summertime Sadness by Lana Del Rey in my first playlist"
-    print(f"Example instruction: {query_example}")
-    query = input("Please input an instruction (Press ENTER to use the example instruction): ")
-    if query == '':
-        query = query_example
-    
-    logger.info(f"Query: {query}")
+    st.write(f"Example instruction: {query_example}")
+    query = st.text_input('Query', query_example)
+    st.info("Since ChatGPT is trained with data till sep 2021 we ask any query beyond the that time period")
 
-    start_time = time.time()
-    rest_gpt.run(query)
-    logger.info(f"Execution Time: {time.time() - start_time}")
+    # Create a placeholder for displaying either the button or the status
+    status_placeholder = st.empty()
 
+    # Initialize a variable to track the button state
+    button_clicked = False
+
+    # Check if the button was clicked
+    if status_placeholder.button("Run", type="primary"):
+        button_clicked = True
+
+    # Simulate some processing
+    if button_clicked:
+        with status_placeholder.status("Running"):
+            logger.info(f"Query: {query}")
+            start_time = time.time()
+            output = rest_gpt.run(query)
+            st.success(output)
+            logger.info(f"Execution Time: {time.time() - start_time}")
 if __name__ == '__main__':
     main()

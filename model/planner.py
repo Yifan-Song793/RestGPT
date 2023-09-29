@@ -5,6 +5,8 @@ from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts.prompt import PromptTemplate
 from langchain.llms.base import BaseLLM
+import openai
+from retry import retry
 
 icl_examples = {
     "tmdb": """Example 1:
@@ -134,6 +136,7 @@ class Planner(Chain):
             scratchpad += self.observation_prefix + execution_res + "\n"
         return scratchpad
 
+    @retry(exceptions=openai.error.RateLimitError, tries=3, delay=15, backoff=2)
     def _call(self, inputs: Dict[str, str]) -> Dict[str, str]:
         scratchpad = self._construct_scratchpad(inputs['history'])
         # print("Scrachpad: \n", scratchpad)

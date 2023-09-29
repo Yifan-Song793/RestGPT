@@ -7,6 +7,8 @@ from langchain.chains.llm import LLMChain
 from langchain.prompts.base import BasePromptTemplate
 from langchain.prompts.prompt import PromptTemplate
 from langchain.llms.base import BaseLLM
+import openai
+from retry import retry
 
 from utils import ReducedOpenAPISpec, get_matched_endpoint
 
@@ -106,7 +108,6 @@ User query: {plan}
 API calling 1: {agent_scratchpad}"""
 
 
-
 class APISelector(Chain):
     llm: BaseLLM
     api_spec: ReducedOpenAPISpec
@@ -115,14 +116,17 @@ class APISelector(Chain):
     output_key: str = "result"
 
     def __init__(self, llm: BaseLLM, scenario: str, api_spec: ReducedOpenAPISpec) -> None:
-        api_name_desc = [f"{endpoint[0]} {endpoint[1].split('.')[0] if endpoint[1] is not None else ''}" for endpoint in api_spec.endpoints]
+        api_name_desc = [
+            f"{endpoint[0]} {endpoint[1].split('.')[0] if endpoint[1] is not None else ''}" for endpoint in api_spec.endpoints]
         api_name_desc = '\n'.join(api_name_desc)
         api_selector_prompt = PromptTemplate(
             template=API_SELECTOR_PROMPT,
-            partial_variables={"endpoints": api_name_desc, "icl_examples": icl_examples[scenario]},
+            partial_variables={"endpoints": api_name_desc,
+                               "icl_examples": icl_examples[scenario]},
             input_variables=["plan", "background", "agent_scratchpad"],
         )
-        super().__init__(llm=llm, api_spec=api_spec, scenario=scenario, api_selector_prompt=api_selector_prompt)
+        super().__init__(llm=llm, api_spec=api_spec, scenario=scenario,
+                         api_selector_prompt=api_selector_prompt)
 
     @property
     def _chain_type(self) -> str:
@@ -131,11 +135,11 @@ class APISelector(Chain):
     @property
     def input_keys(self) -> List[str]:
         return ["plan", "background"]
-    
+
     @property
     def output_keys(self) -> List[str]:
         return [self.output_key]
-    
+
     @property
     def observation_prefix(self) -> str:
         """Prefix to append the observation with."""
@@ -145,14 +149,14 @@ class APISelector(Chain):
     def llm_prefix(self) -> str:
         """Prefix to append the llm call with."""
         return "API calling {}: "
-    
+
     @property
     def _stop(self) -> List[str]:
         return [
             f"\n{self.observation_prefix.rstrip()}",
             f"\n\t{self.observation_prefix.rstrip()}",
         ]
-    
+
     def _construct_scratchpad(
         self, history: List[Tuple[str, str]], instruction: str
     ) -> str:
@@ -166,30 +170,38 @@ class APISelector(Chain):
             scratchpad += self.observation_prefix + execution_res + "\n"
         scratchpad += "Instruction: " + instruction + "\n"
         return scratchpad
-    
+
+    @retry(exceptions=openai.error.RateLimitError, tries=3, delay=15, backoff=2)
     def _call(self, inputs: Dict[str, Any]) -> Dict[str, str]:
         # inputs: background, plan, (optional) history, instruction
         if 'history' in inputs:
-            scratchpad = self._construct_scratchpad(inputs['history'], inputs['instruction'])
+            scratchpad = self._construct_scratchpad(
+                inputs['history'], inputs['instruction'])
         else:
             scratchpad = ""
-        api_selector_chain = LLMChain(llm=self.llm, prompt=self.api_selector_prompt)
-        api_selector_chain_output = api_selector_chain.run(plan=inputs['plan'], background=inputs['background'], agent_scratchpad=scratchpad, stop=self._stop)
-        
-        api_plan = re.sub(r"API calling \d+: ", "", api_selector_chain_output).strip()
+        api_selector_chain = LLMChain(
+            llm=self.llm, prompt=self.api_selector_prompt)
+        api_selector_chain_output = api_selector_chain.run(
+            plan=inputs['plan'], background=inputs['background'], agent_scratchpad=scratchpad, stop=self._stop)
+
+        api_plan = re.sub(r"API calling \d+: ", "",
+                          api_selector_chain_output).strip()
 
         logger.info(f"API Selector: {api_plan}")
 
         finish = re.match(r"No API call needed.(.*)", api_plan)
         if finish is not None:
             return {"result": api_plan}
-            
 
         while get_matched_endpoint(self.api_spec, api_plan) is None:
-            logger.info("API Selector: The API you called is not in the list of available APIs. Please use another API.")
-            scratchpad += api_selector_chain_output + "\nThe API you called is not in the list of available APIs. Please use another API.\n"
-            api_selector_chain_output = api_selector_chain.run(plan=inputs['plan'], background=inputs['background'], agent_scratchpad=scratchpad, stop=self._stop)
-            api_plan = re.sub(r"API calling \d+: ", "", api_selector_chain_output).strip()
+            logger.info(
+                "API Selector: The API you called is not in the list of available APIs. Please use another API.")
+            scratchpad += api_selector_chain_output + \
+                "\nThe API you called is not in the list of available APIs. Please use another API.\n"
+            api_selector_chain_output = api_selector_chain.run(
+                plan=inputs['plan'], background=inputs['background'], agent_scratchpad=scratchpad, stop=self._stop)
+            api_plan = re.sub(r"API calling \d+: ", "",
+                              api_selector_chain_output).strip()
             logger.info(f"API Selector: {api_plan}")
 
         return {"result": api_plan}
