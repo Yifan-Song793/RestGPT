@@ -5,7 +5,7 @@ import time
 import yaml
 
 from langchain.requests import Requests
-from langchain import OpenAI
+from langchain.llms import OpenAI
 
 from utils import reduce_openapi_spec, ColorPrint, MyRotatingFileHandler
 from model import RestGPT
