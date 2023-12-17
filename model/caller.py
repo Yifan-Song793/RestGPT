@@ -295,13 +295,23 @@ class Caller(Chain):
             api_doc_for_parser = endpoint_docs_by_name.get(called_endpoint_name)
             if self.scenario == 'spotify' and endpoint_name == "GET /search":
                 if params is not None and 'type' in params:
-                    search_type = params['type'] + 's'
+                    search_types = params["type"].split(',')
+                    for idx, search_type in enumerate(search_types):
+                        search_types[idx] = search_type + 's'
                 else:
                     params_in_url = json.loads(action_input)['url'].split('&')
                     for param in params_in_url:
                         if 'type=' in param:
-                            search_type = param.split('=')[-1] + 's'
+                            search_types = param.split('=')[-1].split(',')
+                            for idx, search_type in enumerate(search_types):
+                                search_types[idx] = search_type + 's'
                             break
+
+                logger.info(f"Search types: {search_types}")
+                search_types_dict = {}
+                for search_type in search_types:
+                    search_types_dict[search_type] = api_doc_for_parser['responses']['content']['application/json']['schema']['properties'][search_type]
+
                 api_doc_for_parser['responses']['content']['application/json']["schema"]['properties'] = {search_type: api_doc_for_parser['responses']['content']['application/json']["schema"]['properties'][search_type]}
 
             if not self.simple_parser:
