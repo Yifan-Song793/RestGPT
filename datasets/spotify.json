@@ -429,5 +429,156 @@
         "solution": [
             "PUT /me/player/pause"
         ]
+    },
+    {
+        "query": "Play a song from Taylor Swift's newest album",
+        "solution": [
+            "GET /search",
+            "GET /artists/{id}/albums",
+            "PUT /me/player/play"
+        ]
+    },
+    {
+        "query": "play me some quiet songs",
+        "solution": [
+            "GET /search",
+            "PUT /me/player/play"
+        ]
+    },
+    {
+        "query": "Follow the artist of the first song recently played",
+        "solution": [
+            "GET /me/player/currently-playing",
+            "GET /tracks/{id}",
+            "PUT /me/following"
+        ]
+    },
+    {
+        "query": "Switch to the next song and set the single track repeat mode",
+        "solution": [
+            "POST /me/player/next",
+            "PUT /me/player/repeat"
+        ]
+    },
+    {
+        "query": "Save Jay Chou's album Mojito",
+        "solution": [
+            "GET /search",
+            "PUT /me/albums"
+        ]
+    },
+    {
+        "query": "Rename my first playlist to \"My First\"",
+        "solution": [
+            "GET /me/playlists",
+            "PUT /playlists/{playlist_id}"
+        ]
+    },
+    {
+        "query": "Remove following from the artist of the currently playing music",
+        "solution": [
+            "GET /me/player/currently-playing",
+            "GET /tracks/{id}",
+            "DELETE /me/following"
+        ]
+    },
+    {
+        "query": "Pause playback, turn down the volume and resume playing",
+        "solution": [
+            "PUT /me/player/pause",
+            "PUT /me/player/volume",
+            "PUT /me/player/play"
+        ]
+    },
+    {
+        "query": "Add songs from the current playing queue to a new playlist called \"Current\"",
+        "solution": [
+            "GET /me/player/queue",
+            "GET /me",
+            "POST /users/{user_id}/playlists",
+            "PUT /playlists/{playlist_id}"
+        ]
+    },
+    {
+        "query": "What is the name of the song I playing right now?",
+        "solution": [
+            "GET /me/player/currently-playing"
+        ]
+    },
+      {
+        "query": "Play the top tracks of my favorite genre.",
+        "solution": [
+            "GET /me/top/{type}",
+            "GET /search",
+            "PUT /me/player/play"
+        ]
+    },
+    {
+        "query": "Create a collaborative playlist named 'Party Vibes' and invite my friend to it.",
+        "solution": [
+            "GET /me",
+            "POST /users/{user_id}/playlists",
+            "POST /playlists/{playlist_id}/followers"
+        ]
+    },
+    {
+        "query": "Shuffle my 'Workout' playlist.",
+        "solution": [
+            "GET /me/playlists",
+            "PUT /playlists/{playlist_id}/shuffle"
+        ]
+    },
+    {
+        "query": "Add the latest track from Ed Sheeran to my 'Favorites' playlist.",
+        "solution": [
+            "GET /search",
+            "GET /artists/{id}/albums",
+            "GET /albums/{id}/tracks",
+            "POST /playlists/{playlist_id}/tracks"
+        ]
+    },
+    {
+        "query": "Remove duplicate songs from my 'Chill Mix' playlist.",
+        "solution": [
+            "GET /me/playlists",
+            "GET /playlists/{playlist_id}/tracks",
+            "DELETE /playlists/{playlist_id}/remove-duplicates"
+        ]
+    },
+    {
+        "query": "Show me my most played songs of the month.",
+        "solution": [
+            "GET /me/top/{type}?time_range=month"
+        ]
+    },
+    {
+        "query": "Add a song from the 'Discover Weekly' playlist to my library.",
+        "solution": [
+            "GET /me/playlists",
+            "GET /playlists/{playlist_id}/tracks",
+            "POST /me/tracks"
+        ]
+    },
+    {
+        "query": "Play a random song from my 'Oldies but Goodies' playlist.",
+        "solution": [
+            "GET /me/playlists",
+            "GET /playlists/{playlist_id}/tracks",
+            "POST /me/player/play?shuffle=true"
+        ]
+    },
+    {
+        "query": "Set a sleep timer for 30 minutes and fade out the music.",
+        "solution": [
+            "PUT /me/player/sleep-timer",
+            "PUT /me/player/fade-out"
+        ]
+    },
+    {
+        "query": "Show me the lyrics of the currently playing song.",
+        "solution": [
+            "GET /me/player/currently-playing",
+            "GET /tracks/{id}/lyrics"
+        ]
     }
 ]
