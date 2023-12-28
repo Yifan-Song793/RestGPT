@@ -724,5 +724,218 @@
             "GET /search/movie",
             "GET /movie/{movie_id}/images"
         ]
+    },
+{
+        "query": "Who composed the music for the movie Inception?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "Give me the runtime of the longest movie directed by Quentin Tarantino.",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits",
+            "GET /movie/{movie_id}"
+        ]
+    },
+    {
+        "query": "What is the plot summary of the movie Pulp Fiction?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}"
+        ]
+    },
+    {
+        "query": "Find me documentaries released in the last year.",
+        "solution": [
+            "GET /discover/movie",
+            "GET /discover/tv"
+        ]
+    },
+    {
+        "query": "Who played the main character in the TV series Sherlock?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/credits"
+        ]
+    },
+    {
+        "query": "Give me the release date of the latest Marvel Cinematic Universe movie.",
+        "solution": [
+            "GET /search/company",
+            "GET /company/{company_id}/movies"
+        ]
+    },
+    {
+        "query": "What are the top-rated TV shows in the drama genre?",
+        "solution": [
+            "GET /discover/tv",
+            "GET /discover/tv?with_genres=18&sort_by=vote_average.desc"
+        ]
+    },
+    {
+        "query": "Find me movies starring both Robert De Niro and Al Pacino.",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+    {
+        "query": "Give me a list of animated movies released in the past two years.",
+        "solution": [
+            "GET /discover/movie",
+            "GET /discover/movie?with_genres=16&sort_by=release_date.desc"
+        ]
+    },
+    {
+        "query": "Who directed the first episode of the TV series Stranger Things?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/episode/{episode_number}/credits"
+        ]
+    },
+{
+        "query": "Give me the list of movies featuring Tom Hanks and directed by Steven Spielberg.",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+    {
+        "query": "What are the genres of the top-rated comedy movies?",
+        "solution": [
+            "GET /movie/top_rated",
+            "GET /discover/movie?with_genres=35&sort_by=vote_average.desc"
+        ]
+    },
+    {
+        "query": "Tell me about the production companies involved in the making of The Lord of the Rings trilogy.",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/production_companies"
+        ]
+    },
+    {
+        "query": "Find TV shows with a supernatural theme.",
+        "solution": [
+            "GET /discover/tv",
+            "GET /discover/tv?with_genres=14"
+        ]
+    },
+    {
+        "query": "Who wrote the screenplay for the movie The Social Network?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "Give me the latest episode of the TV show Black Mirror.",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/season/{season_number}/episode/latest"
+        ]
+    },
+    {
+        "query": "Find movies with a time travel theme.",
+        "solution": [
+            "GET /discover/movie",
+            "GET /discover/movie?with_genres=14&sort_by=popularity.desc"
+        ]
+    },
+    {
+        "query": "Who played the lead role in the movie La La Land?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
+    },
+    {
+        "query": "Give me the list of movies directed by Quentin Tarantino.",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+    {
+        "query": "Find me documentaries narrated by David Attenborough.",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits"
+        ]
+    },
+ {
+        "query": "What is the average rating of Christopher Nolan's movies?",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits",
+            "GET /movie/{movie_id}"
+        ]
+    },
+    {
+        "query": "Give me the release date of the latest James Cameron movie.",
+        "solution": [
+            "GET /search/person",
+            "GET /person/{person_id}/movie_credits",
+            "GET /movie/{movie_id}/release_dates"
+        ]
+    },
+    {
+        "query": "Who are the main cast members of the TV series Friends?",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/credits"
+        ]
+    },
+    {
+        "query": "Find me movies with a mystery genre released in the 21st century.",
+        "solution": [
+            "GET /discover/movie",
+            "GET /discover/movie?with_genres=9648&primary_release_date.gte=2000-01-01"
+        ]
+    },
+    {
+        "query": "Give me the top-rated animated movies.",
+        "solution": [
+            "GET /movie/top_rated",
+            "GET /discover/movie?with_genres=16&sort_by=vote_average.desc"
+        ]
+    },
+    {
+        "query": "Find TV shows with female leads.",
+        "solution": [
+            "GET /discover/tv",
+            "GET /discover/tv?with_genres=18&sort_by=popularity.desc"
+        ]
+    },
+    {
+        "query": "Tell me about the cinematographers of the Harry Potter film series.",
+        "solution": [
+            "GET /search/movie",
+            "GET /collection/{collection_id}/credits"
+        ]
+    },
+    {
+        "query": "Give me reviews of the TV series Breaking Bad.",
+        "solution": [
+            "GET /search/tv",
+            "GET /tv/{tv_id}/reviews"
+        ]
+    },
+    {
+        "query": "Find me movies with time loop or time travel themes.",
+        "solution": [
+            "GET /discover/movie",
+            "GET /discover/movie?with_genres=878&sort_by=popularity.desc"
+        ]
+    },
+    {
+        "query": "Who is the composer of the soundtrack for the movie Interstellar?",
+        "solution": [
+            "GET /search/movie",
+            "GET /movie/{movie_id}/credits"
+        ]
     }
 ]
