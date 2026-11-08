@@ -160,10 +160,11 @@ def reduce_openapi_spec(spec: dict, dereference: bool = True, only_required: boo
                 ]
         if docs.get("requestBody"):
             out["requestBody"] = docs.get("requestBody")
-        if "200" in docs["responses"]:
-            out["responses"] = docs["responses"]["200"]
-        elif 200 in docs["responses"]:
-            out["responses"] = docs["responses"][200]
+        responses = docs.get("responses", {})
+        if "200" in responses:
+            out["responses"] = responses["200"]
+        elif 200 in responses:
+            out["responses"] = responses[200]
         return out
 
     endpoints = [
