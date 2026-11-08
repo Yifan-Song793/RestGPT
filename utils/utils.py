@@ -110,10 +110,14 @@ def fix_json_error(data: str, return_str=True):
                 continue
             if line.endswith(('[', ']', '{', '}')):
                 continue
-            if not line.endswith(',') and data[i + 1] not in [']', '}', '],', '},']:
+            if i < len(data) - 1:
+                if not line.endswith(',') and data[i + 1] not in [']', '}', '],', '},']:
+                    data[i] += ','
+                if data[i + 1] in [']', '}', '],', '},'] and line.endswith(','):
+                    data[i] = line[:-1]
+            elif not line.endswith(',') and not line.endswith((']', '}', '}', ']')):
                 data[i] += ','
-            if data[i + 1] in [']', '}', '],', '},'] and line.endswith(','):
-                data[i] = line[:-1]
+
         data = " ".join(data)
         
         if not return_str:
