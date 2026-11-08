@@ -80,11 +80,9 @@ def get_matched_endpoint(api_spec: ReducedOpenAPISpec, plan: str):
     return matched_endpoints
 
 
-def simplify_json(raw_json: dict):
+def simplify_json(raw_json):
     if isinstance(raw_json, dict):
-        for key in raw_json.keys():
-            raw_json[key] = simplify_json(raw_json[key])
-        return raw_json
+        return {key: simplify_json(value) for key, value in raw_json.items()}
     elif isinstance(raw_json, list):
         if len(raw_json) == 0:
             return raw_json
