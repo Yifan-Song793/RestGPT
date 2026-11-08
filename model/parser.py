@@ -400,8 +400,10 @@ class SimpleResponseParser(Chain):
         encoded_json = self.encoder.encode(inputs["json"])
         extract_code_chain = LLMChain(llm=self.llm, prompt=self.llm_parsing_prompt)
         if len(encoded_json) > self.max_json_length:
-            encoded_json = self.encoder.decode(encoded_json[:self.max_json_length]) + '...'
-        output = extract_code_chain.predict(query=inputs['query'], json=encoded_json, api_param=inputs['api_param'], response_description=inputs['response_description'])
+            json_str = self.encoder.decode(encoded_json[:self.max_json_length]) + '...'
+        else:
+            json_str = inputs["json"]
+        output = extract_code_chain.predict(query=inputs['query'], json=json_str, api_param=inputs['api_param'], response_description=inputs['response_description'])
 
         return {"result": output}
 
